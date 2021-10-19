@@ -16,6 +16,10 @@
   <body>
     <% if current_page?("/") %>
       <%= render 'shared/home_navbar' %>
+    <% elsif current_page?("/users/sign_in") %>
+      <div></div>
+    <% elsif current_page?("/users/sign_up") %>
+      <div></div>
     <% else %>
       <%= render 'shared/navbar' %>
     <% end %>
