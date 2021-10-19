@@ -3,9 +3,8 @@
     <div>
       <% @articles.sort { |a, b| a.title <=> b.title }.each do |article| %>
         <div>
-          <p><big><%= link_to "#{article.title}", article %></big></p>
+          <p><big><%= link_to "#{article.title}", "#{article.link}" %></big></p>
           <p><%= article.description.truncate(140, separator: ' ') %></p>
-          <p><%= article.link %></p>
           <p><%= article.date %></p>
           <p><%= article.source %></p>
           <td><%= article.asset.name %></td>
