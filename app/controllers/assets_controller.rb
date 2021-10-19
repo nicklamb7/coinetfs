@@ -1,5 +1,6 @@
 class AssetsController < ApplicationController
   before_action :set_asset, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, only: %i[ index ]
 
   # GET /assets or /assets.json
   def index

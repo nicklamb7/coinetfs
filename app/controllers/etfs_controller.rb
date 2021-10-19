@@ -1,6 +1,6 @@
-class EtFsController < ApplicationController
+class EtfsController < ApplicationController
   before_action :set_etf, only: %i[ show edit update destroy ]
-
+  skip_before_action :authenticate_user!, only: %i[ index ]
   # GET /etfs or /etfs.json
   def index
     @etfs = Etf.all
