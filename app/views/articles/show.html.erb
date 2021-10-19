@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @article.description %>
+</p>
+
+<p>
+  <strong>Link:</strong>
+  <%= @article.link %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @article.date %>
+</p>
+
+<p>
+  <strong>Source:</strong>
+  <%= @article.source %>
+</p>
+
+<p>
+  <strong>Asset:</strong>
+  <%= @article.asset_id %>
+</p>
+
+<p>
+  <strong>Etf:</strong>
+  <%= @article.etf_id %>
+</p>
+
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>

@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @etf.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @etf.description %>
+</p>
+
+<p>
+  <strong>Asset:</strong>
+  <%= @etf.asset_id %>
+</p>
+
+<%= link_to 'Edit', edit_etf_path(@etf) %> |
+<%= link_to 'Back', etfs_path %>
