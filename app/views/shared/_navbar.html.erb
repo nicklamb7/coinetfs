@@ -1,35 +1,80 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
-    <% end %>
-
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <% if user_signed_in? %>
-        <li class="nav-item active">
-          <%= link_to "Home", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Messages", "#", class: "nav-link" %>
-        </li>
-        <li class="nav-item dropdown">
-          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-            <%= link_to "Action", "#", class: "dropdown-item" %>
-            <%= link_to "Another action", "#", class: "dropdown-item" %>
-            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
-          </div>
-        </li>
+<div class="navbar navbar-expand-sm navbar-light navbar-lewagon border-bottom">
+  <div class="navbar-container">
+    <div class="row">
+      <div class="navbar-left">
+        <%= link_to '/' do %>
+          <h1>CoinETFs</h1>
+        <% end %>
+        <div class="search-bar">
+        <% if current_page?(controller: 'articles', action: 'index') %>
+          <%= form_tag articles_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "search-input",
+              placeholder: "Search for articles..."
+            %>
+            <%= submit_tag "", class: "btn" %>
+          <% end %>
+        <% elsif current_page?(controller: 'assets', action: 'index') %>
+          <%= form_tag assets_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "search-input",
+              placeholder: "Search for assets..."
+            %>
+            <%= submit_tag "", class: "btn" %>
+          <% end %>
+        <% else %>
+          <%= form_tag etfs_path, method: :get do %>
+            <%= text_field_tag :query,
+              params[:query],
+              class: "search-input",
+              placeholder: "Search for ETFs..."
+            %>
+            <%= submit_tag "", class: "btn" %>
+          <% end %>
+        <% end %>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="navbar-right">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <% if user_signed_in? %>
+              <li class="nav-item dropdown">
+                <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                  <%= link_to "Action", "#", class: "dropdown-item" %>
+                  <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+                </div>
+              </li>
+            <% else %>
+              <li class="nav-item">
+                <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="navbar-bottom">
+      <% if current_page?("/articles") %>
+        <%= link_to 'Articles', articles_path, :class => "active" %>
       <% else %>
-        <li class="nav-item">
-          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
-        </li>
+        <%= link_to 'Articles', articles_path %>
       <% end %>
-    </ul>
+      <% if current_page?("/assets") %>
+        <%= link_to 'Assets', assets_path, :class => "active" %>
+      <% else %>
+        <%= link_to 'Assets', assets_path %>
+      <% end %>
+      <% if current_page?("/functions") %>
+        <%= link_to 'ETFs', etfs_path, :class => "active"  %>
+      <% else %>
+        <%= link_to 'ETFs', etfs_path %>
+      <% end %>
+    </div>
   </div>
 </div>
