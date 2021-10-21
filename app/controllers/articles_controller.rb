@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
     end
 
     if params[:query].present?
-      sql_query = "name ILIKE :query OR description ILIKE :query OR example ILIKE :query"
+      sql_query = "title ILIKE :query OR description ILIKE :query OR source ILIKE :query OR date ILIKE :query"
       @articles = Article.where(sql_query, query: "%#{params[:query]}%")
     else
       @articles = Article.all

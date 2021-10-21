@@ -4,6 +4,18 @@ class EtfsController < ApplicationController
   # GET /etfs or /etfs.json
   def index
     @etfs = Etf.all
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: 'etfs/list', locals: { etfs: @etfs }, formats: [:html] }
+    end
+
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR description ILIKE :query"
+      @etfs = Etf.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @etfs = Etf.all
+    end
   end
 
   # GET /etfs/1 or /etfs/1.json

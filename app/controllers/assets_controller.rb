@@ -5,6 +5,18 @@ class AssetsController < ApplicationController
   # GET /assets or /assets.json
   def index
     @assets = Asset.all
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: 'assets/list', locals: { assets: @assets }, formats: [:html] }
+    end
+
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR description ILIKE :query"
+      @assets = Asset.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @assets = Asset.all
+    end
   end
 
   # GET /assets/1 or /assets/1.json
