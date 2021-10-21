@@ -5,6 +5,18 @@ class ArticlesController < ApplicationController
   # GET /articles or /articles.json
   def index
     @articles = Article.all
+
+    respond_to do |format|
+      format.html # Follow regular flow of Rails
+      format.text { render partial: 'articles/list', locals: { articles: @articles }, formats: [:html] }
+    end
+
+    if params[:query].present?
+      sql_query = "name ILIKE :query OR description ILIKE :query OR example ILIKE :query"
+      @articles = Article.where(sql_query, query: "%#{params[:query]}%")
+    else
+      @articles = Article.all
+    end
   end
 
   # GET /articles/1 or /articles/1.json
