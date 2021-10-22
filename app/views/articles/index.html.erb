@@ -4,10 +4,8 @@
       <% @articles.sort { |a, b| b.date <=> a.date }.each do |article| %>
         <div>
           <p><big><%= link_to "#{article.title}", "#{article.link}" %></big></p>
-          <p><%= article.description.truncate(140, separator: ' ') %></p>
-          <p><%= article.date %></p>
-          <p><%= article.source %></p>
-          <td><%= article.asset.name %></td>
+          <p class="description-text"><%= article.date %> · <%= article.asset.name %> · <%= article.source %></p>
+          <p class="description-text"><%= article.description.truncate(140, separator: ' ') %></p>
             <p><%= link_to 'Edit', edit_article_path(article) %></p>
             <p><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></p>
         </div>
