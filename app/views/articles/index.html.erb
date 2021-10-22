@@ -1,7 +1,7 @@
 <div id="articles-index-page">
   <div class="index-container">
     <div>
-      <% @articles.sort { |a, b| a.title <=> b.title }.each do |article| %>
+      <% @articles.sort { |a, b| b.date <=> a.date }.each do |article| %>
         <div>
           <p><big><%= link_to "#{article.title}", "#{article.link}" %></big></p>
           <p><%= article.description.truncate(140, separator: ' ') %></p>
