@@ -4,7 +4,7 @@
       <% @assets.sort { |a, b| a.name <=> b.name }.each do |asset| %>
         <div>
           <p><big><%= link_to "#{asset.name}", asset %></big></p>
-          <p><%= asset.description.truncate(140, separator: ' ') %></p>
+          <p class="description-text"><%= asset.description.truncate(140, separator: ' ') %></p>
             <p><%= link_to 'Edit', edit_asset_path(asset) %></p>
             <p><%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' } %></p>
         </div>

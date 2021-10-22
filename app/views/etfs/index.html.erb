@@ -3,9 +3,8 @@
     <div>
       <% @etfs.sort { |a, b| a.name <=> b.name }.each do |etf| %>
         <div>
-          <p><big><%= link_to "#{etf.name}", etf %></big></p>
-          <p><%= etf.description.truncate(140, separator: ' ') %></p>
-          <td><%= etf.asset.name %></td>
+          <p><big><%= link_to "#{etf.name}", etf %></big> · <small><%= etf.asset.name %></small></p>
+          <p class="description-text"><%= etf.description.truncate(140, separator: ' ') %></p>
             <p><%= link_to 'Edit', edit_etf_path(etf) %></p>
             <p><%= link_to 'Destroy', etf, method: :delete, data: { confirm: 'Are you sure?' } %></p>
         </div>
