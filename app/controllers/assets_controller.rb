@@ -36,6 +36,7 @@ class AssetsController < ApplicationController
   # POST /assets or /assets.json
   def create
     @asset = Asset.new(asset_params)
+    @asset.user = current_user
 
     respond_to do |format|
       if @asset.save
