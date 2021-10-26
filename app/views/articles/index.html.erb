@@ -6,8 +6,10 @@
           <p><big><%= link_to "#{article.title}", "#{article.link}" %></big></p>
           <p class="description-text"><%= article.date %> · <%= article.asset.name %> · <%= article.source %></p>
           <p class="description-text"><%= article.description.truncate(140, separator: ' ') %></p>
+          <% if policy(article).edit? %>
             <p><%= link_to 'Edit', edit_article_path(article) %></p>
             <p><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          <% end %>
         </div>
       <% end %>
     </div>
