@@ -5,7 +5,7 @@
         <div>
           <p><big><%= link_to "#{etf.name}", etf %></big> · <small><%= etf.asset.name %></small></p>
           <p class="description-text"><%= etf.description.truncate(140, separator: ' ') %></p>
-          <% if policy(etf).edit? %>
+          <% if policy(Asset).edit? %>
             <p><%= link_to 'Edit', edit_etf_path(etf) %></p>
             <p><%= link_to 'Destroy', etf, method: :delete, data: { confirm: 'Are you sure?' } %></p>
           <% end %>
