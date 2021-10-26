@@ -3,7 +3,7 @@ class EtfsController < ApplicationController
   skip_before_action :authenticate_user!, only: %i[ index new ]
   # GET /etfs or /etfs.json
   def index
-    @etfs = Etf.all
+    @etfs = policy_scope(Etf)
 
     respond_to do |format|
       format.html # Follow regular flow of Rails
@@ -25,6 +25,7 @@ class EtfsController < ApplicationController
   # GET /etfs/new
   def new
     @etf = Etf.new
+    authorize @etf
   end
 
   # GET /etfs/1/edit
@@ -72,6 +73,7 @@ class EtfsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_etf
       @etf = Etf.find(params[:id])
+      authorize @etf
     end
 
     # Only allow a list of trusted parameters through.

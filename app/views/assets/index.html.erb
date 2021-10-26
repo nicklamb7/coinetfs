@@ -13,8 +13,8 @@
   </div>
 
   <br>
-
-  <%= link_to 'New Asset', new_asset_path %>
-
+  <% if policy(Asset).create? %>
+    <%= link_to 'New Asset', new_asset_path %>
+  <% end %>
   <p id="notice"><%= notice %></p>
 </div>

@@ -15,7 +15,8 @@
 
   <br>
 
-  <%= link_to 'New article', new_article_path %>
-
+  <% if policy(Article).create? %>
+    <%= link_to 'New article', new_article_path %>
+  <% end %>
   <p id="notice"><%= notice %></p>
 </div>
