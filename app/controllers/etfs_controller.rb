@@ -35,6 +35,7 @@ class EtfsController < ApplicationController
   # POST /etfs or /etfs.json
   def create
     @etf = Etf.new(etf_params)
+    @etf.user = current_user
 
     respond_to do |format|
       if @etf.save
