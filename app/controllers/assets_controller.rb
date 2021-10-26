@@ -4,7 +4,7 @@ class AssetsController < ApplicationController
 
   # GET /assets or /assets.json
   def index
-    @assets = Asset.all
+    @assets = policy_scope(Asset)
 
     respond_to do |format|
       format.html # Follow regular flow of Rails
@@ -26,6 +26,7 @@ class AssetsController < ApplicationController
   # GET /assets/new
   def new
     @asset = Asset.new
+    authorize @asset
   end
 
   # GET /assets/1/edit
@@ -73,6 +74,7 @@ class AssetsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_asset
       @asset = Asset.find(params[:id])
+      authorize @asset
     end
 
     # Only allow a list of trusted parameters through.
